@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff758c;
+            --secondary-color: #ff7eb3;
+            --bg-gradient: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg-gradient);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Latar Belakang Hati Melayang */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 117, 140, 0.3);
+            animation: float 6s infinite linear;
+            font-size: 1.5rem;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Container Utama */
+        .container {
+            width: 90%;
+            max-width: 400px;
+            min-height: 350px;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 40px 25px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #5d5d5d;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .highlight {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Button Styling */
+        .btn-next {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-next:active {
+            transform: scale(0.9);
+        }
+
+        /* Music Floating Button */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        #playBtn {
+            background: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s;
+        }
+
+        .rotating {
+            animation: spin 3s infinite linear;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Responsif HP */
+        @media (max-width: 375px) {
+            h2 { font-size: 1.1rem; }
+            .container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <div class="music-control">
+        <button id="playBtn" onclick="toggleMusic()">🎵</button>
+    </div>
+
+    <audio id="myAudio" loop>
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="slide active">
+            <span class="highlight">Hai...</span>
+            <h2>Kamu marah yaa?</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut ✨</button>
+        </div>
+
+        <div class="slide">
+            <h2>Kamu gimana kabarnya?</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2>Maaf yaa hari ini aku full istirahat karna demam dan alhamdulilah sudah sembuh</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2>Maaf yaa kalo beberapa hari ini chattan kita gak ada warna</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2>Jujur aku gak tau juga harus gimana aku bingung juga</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2>Karna aku selalu kasih kabar dan selalu ngasih tau aku lagi ngapain dan dimana</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2>Tapi kamu tidak,harus aku yang bertanya itupun masih ditanya kenapa</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2 style="font-size: 1rem;">Aku tau dalam hubungan itu komunikasi penting tapi kalo kayak gini jatohnya aku dong yang komunikasi satu arah, karna aku chat,kamu bales,aku chat,kamu bales,tidak ada interaksi dari kamu tidak ada pertanyaan dari kamu</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2 style="font-size: 0.95rem;">Aku juga bingung kayak mana ngehadapinnya, dan aku paham kok aku kurang waktu banyakkk bangettt, karna kerjaan dan magang dan juga aku banyak gak bisa beliin ini itu buat kamu sekarang, karna emang belom ada sebanyak itu uang aku untuk sekarang</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2>Maaf yaa buat kenyamanananmu ke aku berkurang aku juga disini lagi berjuang buat kedepannya</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2 style="font-size: 1rem;">Maaf kalo aku nyinggung kamu atau gimanapun itu aku minta maaf, ini sedikit hadiah kecil dari aku web ini adalah pengutaraan isi hati aku, aku gak bisa ngungkapinnya secara gamblang tapi di web ini aku bisa</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2>Aku paham mungkin kamu marah, sibuk dan mungkin jadi tidak sempat bales chat ini dan bales web ini tapi semoga kamu baca yaa</h2>
+            <button class="btn-next" onclick="nextSlide()">Lanjut..</button>
+        </div>
+
+        <div class="slide">
+            <h2 style="font-size: 0.95rem; text-align: left;">Maaf sekali lagi yaa kita schedule kan sabtu depan yaa kita pergi okey gak papa kamu gak usah mikir aku terbebani enggak yaa dan mungkin gak bisa banyak dulu tapi ini aku tetep mau ngajak pegi kalo bisa dihari lain gak papa bebas kalo dihari lain kamu mau buka bareng aku gak masalah aku bisa kok.</h2>
+            <span class="highlight">See you soon!</span>
+            <p style="font-size: 0.8rem; font-weight: bold; color: #ff758c;">Semangat ya puasanya! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const audio = document.getElementById('myAudio');
+        const playBtn = document.getElementById('playBtn');
+
+        // Fungsi membuat hati melayang
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('heartsContainer').appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+        setInterval(createHeart, 500);
+
+        function nextSlide() {
+            if (audio.paused && currentSlide === 0) {
+                toggleMusic();
+            }
+
+            slides[currentSlide].classList.remove('active');
+            currentSlide++;
+            
+            if (currentSlide < slides.length) {
+                slides[currentSlide].classList.add('active');
+            }
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                playBtn.classList.add('rotating');
+            } else {
+                audio.pause();
+                playBtn.classList.remove('rotating');
+            }
+        }
+    </script>
+</body>
+</html>
